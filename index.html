@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nông Sản Xanh</title>
+  <style>
+    :root {
+      --green-1: #0b3f2a;
+      --green-2: #1f7a3e;
+      --green-3: #79d98a;
+      --green-4: #b8f5c3;
+      --leaf-bg: #f2fff5;
+      --card-bg: #ffffff;
+      --text-dark: #123524;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--green-1), var(--green-2), var(--green-3));
+      min-height: 100vh;
+      color: #fff;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: min(1180px, 94%);
+      margin: 0 auto;
+      padding: 32px 0 48px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(4px);
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+      font-size: 0.95rem;
+    }
+
+    .nav a {
+      color: #f4fff6;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+
+    .nav a:hover {
+      color: #ffffff;
+      opacity: 1;
+    }
+
+    .cta {
+      position: relative;
+      overflow: hidden;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 18px;
+      color: #0f2a19;
+      background: linear-gradient(120deg, #dcffe3, #8ee7a1);
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      left: -120%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+      transition: left 0.45s ease;
+    }
+
+    .cta:hover::before {
+      left: 120%;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+    }
+
+    .slider {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      margin-bottom: 28px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
+    }
+
+    .slides {
+      display: flex;
+      width: 300%;
+      animation: slideShow 15s infinite;
+    }
+
+    .slide {
+      width: 100%;
+      min-height: 340px;
+      padding: 44px 38px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .slide h1,
+    .slide h2 {
+      font-size: clamp(1.4rem, 2.6vw, 2.6rem);
+      max-width: 680px;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    }
+
+    .slide p {
+      max-width: 660px;
+      opacity: 0.96;
+      font-size: 1.02rem;
+    }
+
+    .slide-1 {
+      background-image: linear-gradient(120deg, rgba(6, 36, 20, 0.75), rgba(23, 102, 58, 0.35)),
+        radial-gradient(circle at 20% 20%, rgba(184, 245, 195, 0.34), transparent 30%);
+    }
+
+    .slide-2 {
+      background-image: linear-gradient(120deg, rgba(11, 55, 30, 0.76), rgba(74, 153, 91, 0.38)),
+        radial-gradient(circle at 78% 20%, rgba(220, 255, 227, 0.35), transparent 34%);
+    }
+
+    .slide-3 {
+      background-image: linear-gradient(120deg, rgba(5, 40, 24, 0.8), rgba(37, 122, 66, 0.34)),
+        radial-gradient(circle at 50% 80%, rgba(241, 255, 245, 0.2), transparent 44%);
+    }
+
+    @keyframes slideShow {
+      0%, 28% { transform: translateX(0); }
+      33%, 61% { transform: translateX(-33.333%); }
+      66%, 94% { transform: translateX(-66.666%); }
+      100% { transform: translateX(0); }
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      background: var(--card-bg);
+      color: var(--text-dark);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background: linear-gradient(120deg, transparent 35%, rgba(121, 217, 138, 0.34), transparent 65%);
+      transform: translateX(-120%) rotate(9deg);
+      transition: transform 0.5s ease;
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.26);
+      border-color: rgba(102, 187, 106, 0.7);
+    }
+
+    .card:hover::before {
+      transform: translateX(115%) rotate(9deg);
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      color: #1b5e20;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 12px;
+      background: #d8f3dc;
+      color: #1b5e20;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .about {
+      background: var(--leaf-bg);
+      color: var(--text-dark);
+      border-radius: 18px;
+      padding: 24px;
+      border-left: 8px solid #2e7d32;
+    }
+
+    .about h2 {
+      margin-bottom: 8px;
+      color: #1b5e20;
+    }
+
+    footer {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.92;
+    }
+
+    @media (max-width: 820px) {
+      .nav {
+        flex-wrap: wrap;
+      }
+
+      .nav-menu {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .slide {
+        min-height: 300px;
+        padding: 30px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <div class="brand">Nong San Xanh</div>
+      <ul class="nav-menu">
+        <li><a href="#">San pham</a></li>
+        <li><a href="#">Khuyen mai</a></li>
+        <li><a href="#">Nha vuon</a></li>
+        <li><a href="#">Lien he</a></li>
+      </ul>
+      <button class="cta">Dat combo ngay</button>
+    </nav>
+
+    <section class="slider" aria-label="slider gioi thieu">
+      <div class="slides">
+        <article class="slide slide-1">
+          <h1>Nong San Xanh - Tuoi Sach Tu Nong Trai</h1>
+          <p>Giao hang trong ngay, truy xuat nguon goc ro rang va uu dai theo mua cho gia dinh.</p>
+        </article>
+        <article class="slide slide-2">
+          <h2>Combo thuong mai cho cua hang va nha hang</h2>
+          <p>Dong goi linh hoat theo khoi luong, ho tro hoa don day du va chinh sach gia si.</p>
+        </article>
+        <article class="slide slide-3">
+          <h2>Khuyen mai tuan nay: giam den 20%</h2>
+          <p>Ap dung cho rau huu co, trai cay theo mua va cac goi combo tiet kiem.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="products">
+      <article class="card">
+        <h3>Rau huu co</h3>
+        <p>Cai xanh, xa lach, rau muong thu hoach trong ngay, khong du luong hoa chat.</p>
+        <span class="badge">Chuan VietGAP</span>
+      </article>
+      <article class="card">
+        <h3>Trai cay theo mua</h3>
+        <p>Xoai, cam, buoi va dua luoi vi ngot tu nhien, duoc bao quan lanh sau thu hoach.</p>
+        <span class="badge">Do tuoi cao</span>
+      </article>
+      <article class="card">
+        <h3>Nong san say</h3>
+        <p>Khoai lang say, mit say gion, giu huong vi nguyen ban va tien loi cho moi gia dinh.</p>
+        <span class="badge">Khong pham mau</span>
+      </article>
+      <article class="card">
+        <h3>Combo gia dinh</h3>
+        <p>Goi san pham can bang dinh duong theo tuan, giup tiet kiem thoi gian di cho.</p>
+        <span class="badge">Tiet kiem 15%</span>
+      </article>
+    </section>
+
+    <section class="about">
+      <h2>Vi sao chon chung toi?</h2>
+      <p>
+        Minh bach nguon goc, uu tien nha vuon dia phuong va toi uu chuoi cung ung xanh.
+        Muc tieu cua chung toi la mang thuc pham tot den tung bua an, dong thoi bao ve moi truong.
+      </p>
+    </section>
+
+    <footer>
+      © 2026 Nong San Xanh - Ket noi nong trai va gian bep Viet.
+    </footer>
+  </div>
+</body>
+</html>
